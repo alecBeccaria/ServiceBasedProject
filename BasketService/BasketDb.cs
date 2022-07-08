@@ -8,7 +8,7 @@ public class BasketDb : DbContext
     {
         modelBuilder.Entity<Basket>(entity =>
         {
-            entity.Property(e =>e.id)
+            entity.Property(e =>e.id);
 
         });
     }
