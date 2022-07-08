@@ -7,6 +7,7 @@ namespace BasketController
     [Route("basket")]
     public class BasketController: ControllerBase
     {
+
         private readonly BasketDb _db;
 
         public BasketController(ILogger<BasketController> logger, BasketDb db)
@@ -15,10 +16,20 @@ namespace BasketController
         }
 
         [HttpGet]
-        public void GetBasketId(int id)
+        public ActionResult<String> abc()
         {
-
+            return "Hello World!";
         }
+
+        [HttpPost]
+        public async Task<IResult> CreateBasket(Basket basket)
+        {
+            _db.Baskets.Add(basket);
+            
+            await _db.SaveChangesAsync();
+            return Results.Created($"/{basket.id}", basket);
+        }
+        
         
     }
 }

@@ -1,5 +1,11 @@
-using System.Collections.Generic;
+
+using System.ComponentModel.DataAnnotations;
 public class Basket{
-    private int id;
-    private Dictionary<int, int> items;
+    
+    public int id { get; set; } 
+    
+    public  Dictionary<int, int> items {get; set;}
+
+   
+    
 }
