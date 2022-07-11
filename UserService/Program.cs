@@ -1,6 +1,24 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using Microsoft.EntityFrameworkCore;
 
-app.MapGet("/", () => "Hello World!");
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllers();
+//builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
+builder.Services.AddDbContext<UserDB>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("docker_db1")));
+builder.Services.AddCors(option =>
+      {
+        option.AddPolicy("AllCors", builder =>
+        {
+          builder.AllowAnyOrigin();
+          builder.AllowAnyHeader();
+          builder.AllowAnyMethod();
+        });
+      });
+var app = builder.Build();
+app.MapControllers();
+
+
+
+app.UseCors("AllCors");
 
 app.Run();
