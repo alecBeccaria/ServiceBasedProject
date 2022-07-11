@@ -1,11 +1,24 @@
 
-using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 public class Basket{
     
-    public int id { get; set; } 
-    
-    public  Dictionary<int, int> items {get; set;}
+    public int Id { get; set; }
 
-   
+    public int UserId {get; set;} 
     
+    //Key = BasketId, Value = ItemId 
+    public  List<BasketItem> Items {get; set;}
+
+    public Basket(int userId)
+    {
+        UserId = userId;
+        Items = new List<BasketItem>();
+    }
+
+    public void AddItem(int basketId, int itemId)
+    {
+        Items.Add(new BasketItem(basketId, itemId));
+    }
+
+
 }
