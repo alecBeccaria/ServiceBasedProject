@@ -16,21 +16,18 @@ public class Basket
 
 public class Item
 {
+    //Primary Key
     public int Id {get; set;}
 
-    
-    public int BasketId {get; set;}
+    //Foreign key
+    //public int BasketId {get; set;}
+
+    //Navigation Prop
     public virtual Basket Basket {get; set;}
 
-    //public Basket Basket {get; set;}
-    //Navigation Property
+    
 }
 
-public class BasketItem 
-{
-    public ICollection<Item> item {get; set;}
-    public Basket basket {get; set;}
-}
 
 
 
