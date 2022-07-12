@@ -1,24 +1,37 @@
 
 using Microsoft.AspNetCore.Mvc;
-public class Basket{
+using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
+
+
+public class Basket
+{
     
+    [Key]
     public int Id { get; set; }
 
+    [Required]
     public int UserId {get; set;} 
     
     //Key = BasketId, Value = ItemId 
-    public  List<BasketItem> Items {get; set;}
+    
+    public  ICollection<BasketItem> Items {get; set;}
 
     public Basket(int userId)
     {
         UserId = userId;
         Items = new List<BasketItem>();
     }
+}
 
-    public void AddItem(int basketId, int itemId)
-    {
-        Items.Add(new BasketItem(basketId, itemId));
-    }
 
+public class BasketItem
+{
+    [Key]
+    public int ItemId {get; set;}
+    
+    
+    public  Basket Basket {get; set;}
 
 }

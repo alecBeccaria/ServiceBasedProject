@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using 
+
 
 namespace BasketController
 {
@@ -22,22 +22,19 @@ namespace BasketController
         }
 
         [HttpPost]
-        public async Task<IResult> CreateBasket(int userId)
+        public async Task<IResult> CreateBasket(Basket basket)
         {
-            Basket basket = new Basket(userId);
+            
             _db.Baskets.Add(basket);
             await _db.SaveChangesAsync();
             return Results.Created($"/Id: {basket.Id}", basket);
         }
 
-        [HttpPut("Add")]
-        public async Task<IResult> AddOneToBasket(int itemId, Basket basket)
+        [HttpPut]
+        public async Task<ActionResult<Basket>> AddOneToBasket(int itemId, int BasketId)
         {
-            Basket taskbasket = getDbBasket(basket.Id);
-            
-            
-
-            basket.AddItem(basket.Id, itemId);
+            List<BasketItem> items = await _db.BasketItems.Where(b => b.Basket.Id == BasketId).ToListAsync();
+            Basket basket = await _db.Baskets.FirstAsync(b => b.Id == BasketId);
 
 
             _db.Baskets.Update(basket);
@@ -49,19 +46,7 @@ namespace BasketController
 
             await _db.SaveChangesAsync();
 
-            return Results.Created($"Basket Id: {basket.Id}\nItem Id: {itemId}", basket);
-        }
-
-        public async Task<Basket> getDbBasket(int basketId)
-        {
-            
-            List<BasketItem> items = await _db.BasketItems.Where(b => b.BasketId == basketId).ToListAsync();
-            Basket basket = await _db.Baskets.FirstAsync(b => b.Id == basketId);
-            
-            basket.Items = items;
-            
-
-            return basket;
+            return Ok(basket);
         }
 
         
