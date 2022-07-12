@@ -42,14 +42,11 @@ namespace BasketController
         }
 
         [HttpPut]
-        public async Task<ActionResult<Basket>> AddOneToBasket(BasketItem item)
+        public async Task<IResult> AddOneToBasket(Basket basket)
         {
-            Basket basket = await _db.Baskets.FindAsync(item.Basket.Id);
-            _db.BasketItems.Add(item);
-
-
+            _db.Baskets.Update(basket);
             await _db.SaveChangesAsync();
-            return Ok(item);
+            return Results.Ok(basket);
         }
 
         

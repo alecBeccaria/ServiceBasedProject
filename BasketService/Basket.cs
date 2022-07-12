@@ -10,20 +10,19 @@ public class Basket
     public int Id { get; set; }
     public int UserId {get; set;} 
     
-    public ICollection<BasketItem> BasketItems {get; set;}
+    public List<Item> BasketItems {get; set;} = default!;
 }
 
 
-public class BasketItem
+
+
+public class Item
 {
     
     public int ItemId {get; set;}
 
-    public int BasketId {get;set;}
+    //public Basket Basket {get; set;}
     //Navigation Property
-    public Basket Basket {get; set;} = default!;
-
-    
 }
 
 
