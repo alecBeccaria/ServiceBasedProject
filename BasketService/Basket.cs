@@ -7,31 +7,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 public class Basket
 {
-    
-    [Key]
     public int Id { get; set; }
-
-    [Required]
     public int UserId {get; set;} 
     
-    //Key = BasketId, Value = ItemId 
-    
-    public  ICollection<BasketItem> Items {get; set;}
-
-    public Basket(int userId)
-    {
-        UserId = userId;
-        Items = new List<BasketItem>();
-    }
+    public ICollection<BasketItem> BasketItems {get; set;}
 }
 
 
 public class BasketItem
 {
-    [Key]
+    
     public int ItemId {get; set;}
-    
-    
-    public  Basket Basket {get; set;}
 
+    public int BasketId {get;set;}
+    //Navigation Property
+    public Basket Basket {get; set;} = default!;
+
+    
 }
+
+

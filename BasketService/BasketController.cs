@@ -6,7 +6,7 @@ namespace BasketController
 {
     [ApiController]
     [Route("basket")]
-    public class BasketController: ControllerBase
+    public class BasketController: Controller
     {
 
         private readonly BasketDb _db;
@@ -15,10 +15,21 @@ namespace BasketController
             _db = db;
         }
 
-        [HttpGet]
-        public ActionResult<String> abc()
+        [HttpGet("all")]
+        public async Task<ActionResult<List<Basket>>> AllBaskets()
         {
-            return "Yes No idk";
+            return await _db.Baskets.ToListAsync();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<List<Basket>>> AllBaskets(int id)
+        {
+            var todo = await _db.Baskets.FindAsync(id);
+            if(todo == null)
+            {
+                return NotFound();
+            }
+            return Ok(todo);
         }
 
         [HttpPost]
@@ -31,22 +42,14 @@ namespace BasketController
         }
 
         [HttpPut]
-        public async Task<ActionResult<Basket>> AddOneToBasket(int itemId, int BasketId)
+        public async Task<ActionResult<Basket>> AddOneToBasket(BasketItem item)
         {
-            List<BasketItem> items = await _db.BasketItems.Where(b => b.Basket.Id == BasketId).ToListAsync();
-            Basket basket = await _db.Baskets.FirstAsync(b => b.Id == BasketId);
+            Basket basket = await _db.Baskets.FindAsync(item.Basket.Id);
+            _db.BasketItems.Add(item);
 
-
-            _db.Baskets.Update(basket);
-
-            foreach (BasketItem item in basket.Items)
-            {
-                _db.BasketItems.Update(item);
-            }
 
             await _db.SaveChangesAsync();
-
-            return Ok(basket);
+            return Ok(item);
         }
 
         
