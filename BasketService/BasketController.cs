@@ -41,12 +41,27 @@ namespace BasketController
             return Results.Created($"/Id: {basket.Id}", basket);
         }
 
-        [HttpPut]
-        public async Task<IResult> AddOneToBasket(Basket basket)
+        [HttpPut("{id}")]
+        public async Task<IResult> AddOneToBasket(Item item, int id)
         {
+            var basket = await _db.Baskets.FindAsync(id);
+            if(basket is null)
+            {
+                return Results.NotFound();
+            }
+
+            basket.Items.Add(item);
+
+            if(!_db.Items.Contains(item))
+            {
+                _db.Items.Add(item);
+            }
+
             _db.Baskets.Update(basket);
+
             await _db.SaveChangesAsync();
-            return Results.Ok(basket);
+
+            return Results.Ok(item);
         }
 
         
