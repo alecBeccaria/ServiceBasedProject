@@ -46,14 +46,14 @@ namespace BasketController
         {
             var basket = await _db.Baskets.FindAsync(id);
 
-            if(basket.Items is null)
-            {
-                basket.Items = new List<Item>();
-            }
-
             if(basket is null)
             {
                 return Results.NotFound();
+            }
+
+            if(basket.Items is null)
+            {
+                basket.Items = new List<Item>();
             }
 
             basket.Items.Add(item);
