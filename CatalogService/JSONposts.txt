@@ -1,0 +1,20 @@
+{
+    "Title":"Super Mario 64",
+    "Description":"Videogame for the Nintendo 64. Tags: n64 64 nintendo super mario bros brothers",
+    "Price": 49.99,
+    "Quantity": 100
+}
+
+{
+    "Title":"Broom",
+    "Description":"A brush used for cleaning dust off the floor. Tags: clean cleaning supplies home cleans",
+    "Price": 9.99,
+    "Quantity": 100
+}
+
+{
+    "Title":"Mop",
+    "Description":"A tool used to wet the floor for cleaning dirt. Tags: clean cleaning supplies home cleans wet",
+    "Price": 15.99,
+    "Quantity": 100
+}
