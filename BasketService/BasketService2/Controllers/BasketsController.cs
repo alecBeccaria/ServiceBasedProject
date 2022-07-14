@@ -65,17 +65,12 @@ namespace BasketService
                 return Results.NotFound();
             }
 
-           /* if(item.Baskets is null)
-            {
-                item.Baskets = new List<Basket>(); 
-            }*/
 
             if (basket.Items is null)
             {
                 basket.Items = new List<Item>();
             }
 
-            //item.Baskets.Add(basket);
 
             if (basket.Items.Contains(item))
             {
@@ -101,15 +96,19 @@ namespace BasketService
                 return Results.NotFound($"Basket with id {id} does not exist");
             }
 
-            if(basket.Items == null || basket.Items.Contains(item))
+            if(basket.Items == null)
             {
                 return Results.Ok("Item not in list");
             }
 
+            Item ItemToRemove = basket.Items.Find(i => i.Id == item.Id);
 
+            if(ItemToRemove == null)
+            {
+                return Results.Ok("Item not in list");
+            }
 
-            basket.Items.Find(i => i.Id == item.Id);
-
+            basket.Items.Remove(ItemToRemove);
 
             _db.Baskets.Update(basket);
             
