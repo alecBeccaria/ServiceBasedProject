@@ -9,11 +9,7 @@ public class BasketDb : DbContext
 
     public DbSet<Item> Items { get; set; }
 
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-    }
-
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
      {
         modelBuilder.Entity<Item>().Property(item => item.Id).ValueGeneratedNever();

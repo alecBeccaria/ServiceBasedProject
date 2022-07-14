@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BasketService.Migrations
 {
     [DbContext(typeof(BasketDb))]
-    [Migration("20220713210808_BasketMigration")]
+    [Migration("20220714011603_BasketMigration")]
     partial class BasketMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,6 +57,9 @@ namespace BasketService.Migrations
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

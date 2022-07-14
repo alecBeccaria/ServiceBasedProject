@@ -17,6 +17,8 @@ namespace BasketService
         [Key]
         public int Id { get; set; }
 
+        public string? Name { get; set; }
+
         [JsonIgnore]
         public virtual List<Basket>? Baskets { get; set; }
     }

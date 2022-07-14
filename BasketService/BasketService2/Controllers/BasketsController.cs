@@ -91,7 +91,7 @@ namespace BasketService
             return Results.Ok(basket);
         }
 
-        [HttpDelete("{id}/item/delete")]
+        [HttpDelete("{id}/item")]
         public async Task<IResult> deleteItem(Item item, int id)
         {
             Basket basket = await _db.Baskets.Include(b => b.Items).FirstAsync(basket => basket.Id == id);
@@ -106,7 +106,9 @@ namespace BasketService
                 return Results.Ok("Item not in list");
             }
 
-            basket.Items.Remove(item);
+
+
+            basket.Items.Find(i => i.Id == item.Id);
 
 
             _db.Baskets.Update(basket);
