@@ -11,7 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BasketService.Migrations
 {
     [DbContext(typeof(BasketDb))]
+<<<<<<<< HEAD:BasketService/Migrations/20220714233201_Basket.Designer.cs
     [Migration("20220714233201_Basket")]
+========
+    [Migration("20220714214707_Basket")]
+>>>>>>>> main:BasketService/Migrations/20220714214707_Basket.Designer.cs
     partial class Basket
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,9 +49,6 @@ namespace BasketService.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

@@ -11,6 +11,11 @@ builder.Services.AddControllersWithViews()
 builder.Services.AddDbContext<BasketDb>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("docker_db1")));//gives up the database handle
 var app = builder.Build();
 
+app.UseCors(builder => builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
+
 
 
 using (var scope = app.Services.CreateScope())
