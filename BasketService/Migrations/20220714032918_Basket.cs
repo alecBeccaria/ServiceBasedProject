@@ -4,7 +4,7 @@
 
 namespace BasketService.Migrations
 {
-    public partial class BasketMigration : Migration
+    public partial class Basket : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,8 +25,11 @@ namespace BasketService.Migrations
                 name: "Items",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<long>(type: "bigint", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Quantity = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -38,7 +41,7 @@ namespace BasketService.Migrations
                 columns: table => new
                 {
                     BasketsId = table.Column<int>(type: "int", nullable: false),
-                    ItemsId = table.Column<int>(type: "int", nullable: false)
+                    ItemsId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {

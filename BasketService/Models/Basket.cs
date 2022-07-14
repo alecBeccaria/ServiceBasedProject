@@ -15,21 +15,14 @@ namespace BasketService
     public class Item
     {
         [Key]
-        public int Id { get; set; }
-
-        public string? Name { get; set; }
+        public long Id { get; set; }
+        public string? Title { get; set; }
+        public string? Description { get; set; }
+        public decimal? Price { get; set; }
+        public long? Quantity { get; set; }
 
         [JsonIgnore]
         public virtual List<Basket>? Baskets { get; set; }
     }
 
-    
-
-
 }
-
-
-
-
-
-
