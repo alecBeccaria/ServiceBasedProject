@@ -3,7 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasketService", "BasketService\BasketService.csproj", "{DA76B10D-6E67-4BF6-BAB0-B2CC4ECCA93E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasketService", "BasketService\BasketService.csproj", "{DA76B10D-6E67-4BF6-BAB0-B2CC4ECCA93E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardService", "CardService\CardService.csproj", "{BED0671C-0D49-4B0F-9776-CEB4ADAFFB7E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogService", "CatalogService\CatalogService.csproj", "{D7C21CC7-3E70-481E-A317-2CA4FE93AAFB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckoutService", "CheckoutService\CheckoutService.csproj", "{85520F50-ABE4-444C-8966-466B3C9F52E0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserService", "UserService\UserService.csproj", "{B456B188-AD40-495B-9CAB-F4E6D05319DD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B300E591-0F1A-4BAA-B888-D628170911FA}"
+	ProjectSection(SolutionItems) = preProject
+		WebApp\index.html = WebApp\index.html
+		WebApp\script.js = WebApp\script.js
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +29,22 @@ Global
 		{DA76B10D-6E67-4BF6-BAB0-B2CC4ECCA93E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA76B10D-6E67-4BF6-BAB0-B2CC4ECCA93E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA76B10D-6E67-4BF6-BAB0-B2CC4ECCA93E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BED0671C-0D49-4B0F-9776-CEB4ADAFFB7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BED0671C-0D49-4B0F-9776-CEB4ADAFFB7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BED0671C-0D49-4B0F-9776-CEB4ADAFFB7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BED0671C-0D49-4B0F-9776-CEB4ADAFFB7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7C21CC7-3E70-481E-A317-2CA4FE93AAFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7C21CC7-3E70-481E-A317-2CA4FE93AAFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7C21CC7-3E70-481E-A317-2CA4FE93AAFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7C21CC7-3E70-481E-A317-2CA4FE93AAFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85520F50-ABE4-444C-8966-466B3C9F52E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85520F50-ABE4-444C-8966-466B3C9F52E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85520F50-ABE4-444C-8966-466B3C9F52E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85520F50-ABE4-444C-8966-466B3C9F52E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B456B188-AD40-495B-9CAB-F4E6D05319DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B456B188-AD40-495B-9CAB-F4E6D05319DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B456B188-AD40-495B-9CAB-F4E6D05319DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B456B188-AD40-495B-9CAB-F4E6D05319DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
