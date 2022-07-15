@@ -10,9 +10,20 @@ body {
     background-color: #eeb;
 } 
 
+
 .flexbox-basket {
     display: flex;
 
+
+}
+
+.basket-border{
+    border-style: solid; 
+    border-width: 2px; 
+    padding-right: 300px; 
+    padding-left: 10px;
+    margin-left: 60px;
+    
 }
 
 .flexbox-search {

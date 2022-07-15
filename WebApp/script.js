@@ -3,8 +3,16 @@ var searchResultsDiv = document.getElementById('searchOutput');
 var searchText = document.getElementById('txtSearch');
 var searchPriceMin = document.getElementById('txtPriceMin');
 var searchPriceMax = document.getElementById('txtPriceMax');
+var BasketHTML = document.getElementById('Basket');
+var basket = null;
 
-
+// var itemObj = {
+//     id,
+//     title,
+//     description,
+//     price,
+//     quantity
+// }
 
 const createBasket = async () => {
     var url = "http://localhost:5159/basket/add";
@@ -12,14 +20,55 @@ const createBasket = async () => {
     
     b = await response.json();
     console.log(b);
-    return b;
+    setBasketCallback(b)
 }
 
-var basket = createBasket();
 
-const addToCart = async () => {
+const setBasketCallback = (data) => {
+    globalThis.basket = data;
     
 }
+
+createBasket();
+
+
+
+const addToCart = async (item) => {
+
+    var url = `http://localhost:5156/catalog/items/${item.id}`
+    const response = await fetch(url);
+    item = await response.json();
+
+    if(basket.items.length == 0){
+        basket.items.push(item);
+        BasketHTML.innerHTML +=`
+            <div>
+                <h2>${item.title}: ${item.price}</h2>
+            </div><br></br>`
+    }else{
+        let containsItem = false;
+        for(let i = 0; i < basket.items.length; i++){
+            
+            if(basket.items[i].id == item.id){
+                containsItem = true;
+            }
+        }
+        if(!containsItem){
+            basket.items.push(item);
+            console.log(item.id)
+            BasketHTML.innerHTML +=`
+            <div>
+                <h2>${item.title}: ${item.price}</h2>
+            </div><br></br>`
+        }
+    }
+    
+    
+
+    
+    console.log(basket);
+}
+
 
 const fetchData = async (url) => {
     const response = await fetch(url);
@@ -41,11 +90,18 @@ const returnData = arr => {
     </div><br>
     <div>
         ${desc}
-        <input id=Button${arr[i].id} type="button" value="Add to Cart"><br>
+        <input id=${arr[i].id} type="button" value="Add to Cart"><br>
     </div><br>`
 
-    document.getElementById(`Button${arr[i].id}`).addEventListener("click", addToCart(arr[i]))
-}
+        
+    }
+
+    for (let i = 0; i < arr.length; i++){
+        document.getElementById(arr[i].id).addEventListener("click", (e) =>
+        {
+            addToCart(e.target)
+        })
+    }
         
     
 };
