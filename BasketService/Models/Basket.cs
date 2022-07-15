@@ -7,6 +7,8 @@ namespace BasketService
     {
         public int Id { get; set; }
 
+        public int? userId { get; set; }
+
         public List<Item>? Items { get; set; }
 
         public Basket()
@@ -22,7 +24,7 @@ namespace BasketService
         public long Id { get; set; }
         public string? Title { get; set; }
         public string? Description { get; set; }
-        public float? Price { get; set; }
+        public decimal? Price { get; set; }
         public long? Quantity { get; set; }
 
         [JsonIgnore]

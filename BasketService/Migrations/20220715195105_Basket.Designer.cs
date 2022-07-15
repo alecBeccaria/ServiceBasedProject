@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BasketService.Migrations
 {
     [DbContext(typeof(BasketDb))]
-    [Migration("20220714234346_Basket")]
+    [Migration("20220715195105_Basket")]
     partial class Basket
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,6 +46,9 @@ namespace BasketService.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("userId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Baskets");
@@ -59,8 +62,8 @@ namespace BasketService.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float?>("Price")
-                        .HasColumnType("real");
+                    b.Property<decimal?>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<long?>("Quantity")
                         .HasColumnType("bigint");

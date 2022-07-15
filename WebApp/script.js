@@ -14,6 +14,14 @@ var basket = null;
 //     quantity
 // }
 
+class Basket {
+    constructor(id, userId, items){
+        this.id = id
+        this.userId = userId
+        this.items = items
+    }
+}
+
 const createBasket = async () => {
     var url = "http://localhost:5159/basket/add";
     const response = await fetch(url);

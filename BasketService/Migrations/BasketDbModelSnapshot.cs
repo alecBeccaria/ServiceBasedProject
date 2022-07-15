@@ -44,6 +44,9 @@ namespace BasketService.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("userId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Baskets");
@@ -57,8 +60,8 @@ namespace BasketService.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float?>("Price")
-                        .HasColumnType("real");
+                    b.Property<decimal?>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<long?>("Quantity")
                         .HasColumnType("bigint");
