@@ -19,7 +19,7 @@ namespace BasketService
         [HttpGet("all")]
         public async Task<ActionResult<List<Basket>>> AllBaskets()
         {
-           var list = await _db.Baskets.Include(b => b.Items).ToListAsync();
+            var list = await _db.Baskets.Include(b => b.Items).ToListAsync();
             return Ok(list);
         }
 
@@ -58,7 +58,6 @@ namespace BasketService
             {
                 item = itemDb;
             }
-           
 
             if (basket is null)
             {

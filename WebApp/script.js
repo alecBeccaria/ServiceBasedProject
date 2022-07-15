@@ -153,6 +153,5 @@ const shuffleArr = myArr => {
     return myArr;
 };
 
-
 //document.getElementById('searchBtn').addEventListener('click', handleClick);
 document.getElementById('searchBtn').addEventListener('click', searchBtnSwitch);
