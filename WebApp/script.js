@@ -4,40 +4,49 @@ var searchText = document.getElementById('txtSearch');
 var searchPriceMin = document.getElementById('txtPriceMin');
 var searchPriceMax = document.getElementById('txtPriceMax');
 var BasketHTML = document.getElementById('Basket');
-var basket = null;
+var btnCheckOut = document.getElementById('btnCheckOut');
 
-// var itemObj = {
-//     id,
-//     title,
-//     description,
-//     price,
-//     quantity
-// }
 
 class Basket {
-    constructor(id, userId, items){
-        this.id = id
-        this.userId = userId
-        this.items = items
-    }
+    items = [];
+    userId;
 }
 
-const createBasket = async () => {
+var basket = new Basket();
+console.log(basket);
+
+var addBasket = async (userId) => {
+
+    basket.userId = userId;
+
     var url = "http://localhost:5159/basket/add";
-    const response = await fetch(url);
-    
-    b = await response.json();
-    console.log(b);
-    setBasketCallback(b)
+
+    const location = window.location.hostname;
+    const settings = {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(basket)
+    }
+    try {
+        const fetchResponse = await fetch(url, settings);
+        const data = await fetchResponse.json();
+        return data;
+    } catch (e) {
+        return e;
+    }    
+
+}
+
+const checkOut = async () => {
+    addResponse = await addBasket(1);
+    console.log(addResponse);
+
 }
 
 
-const setBasketCallback = (data) => {
-    globalThis.basket = data;
-    
-}
-
-createBasket();
 
 
 
@@ -70,10 +79,6 @@ const addToCart = async (item) => {
             </div><br></br>`
         }
     }
-    
-    
-
-    
     console.log(basket);
 }
 
@@ -156,3 +161,5 @@ const shuffleArr = myArr => {
 
 //document.getElementById('searchBtn').addEventListener('click', handleClick);
 document.getElementById('searchBtn').addEventListener('click', searchBtnSwitch);
+btnCheckOut.addEventListener('click', checkOut);
+

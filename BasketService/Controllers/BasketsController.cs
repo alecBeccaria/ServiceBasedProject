@@ -23,6 +23,8 @@ namespace BasketService
             return Ok(list);
         }
 
+
+
         //Get One Basket
         [HttpGet("{id}")]
         public async Task<ActionResult<List<Basket>>> SingleBasket(int id)
@@ -36,14 +38,14 @@ namespace BasketService
         }
 
         //Create Basket for User
-        [HttpGet("add")]
-        public async Task<ActionResult<Basket>> CreateBasket()
+        [HttpPost("add")]
+        public async Task<ActionResult<Basket>> AddBasket(Basket basket)
         {
-            Basket basket = new Basket();
             _db.Baskets.Add(basket);
             await _db.SaveChangesAsync();
             return Ok(basket);
         }
+
 
         //Add Item to specified basket {id}
         [HttpPut("{id}/item/add")]
