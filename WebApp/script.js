@@ -5,25 +5,21 @@ var searchPriceMin = document.getElementById('txtPriceMin');
 var searchPriceMax = document.getElementById('txtPriceMax');
 
 
+
 const createBasket = async () => {
-    var url = `http://localhost:5159/basket/add`
- 
-    const rawResponse = await fetch(url, {
-    method: 'POST',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({"Items":[]})
-    });
-
-    var basket = await rawResponse.json;
-
-    return basket
+    var url = "http://localhost:5159/basket/add";
+    const response = await fetch(url);
+    
+    b = await response.json();
+    console.log(b);
+    return b;
 }
-const basket = createBasket();
-console.log(basket);
 
+var basket = createBasket();
+
+const addToCart = async () => {
+    
+}
 
 const fetchData = async (url) => {
     const response = await fetch(url);
@@ -45,22 +41,16 @@ const returnData = arr => {
     </div><br>
     <div>
         ${desc}
-        <input id=${arr[i].id} type="button" value="Add to Cart"><br>
+        <input id=Button${arr[i].id} type="button" value="Add to Cart"><br>
     </div><br>`
 
-    document.getElementById(arr[i].id).addEventListener("click", addToCart(arr[i]))
+    document.getElementById(`Button${arr[i].id}`).addEventListener("click", addToCart(arr[i]))
 }
         
     
 };
 
-async function addToCart(item) {
-    const response = await fetch();
-    const data = await response.json();
-    myData = shuffleArr(data);
-    console.log(myData);
-    returnData(myData);
-}
+
 
 async function searchBtnSwitch() {
     if (searchText.value == "") {

@@ -8,6 +8,11 @@ namespace BasketService
         public int Id { get; set; }
 
         public List<Item>? Items { get; set; }
+
+        public Basket()
+        {
+            Items = new List<Item>();  
+        }
     }
 
 

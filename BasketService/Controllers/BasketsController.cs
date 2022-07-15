@@ -36,13 +36,13 @@ namespace BasketService
         }
 
         //Create Basket for User
-        [HttpPost("add")]
-        public async Task<IResult> CreateBasket(Basket basket)
+        [HttpGet("add")]
+        public async Task<ActionResult<Basket>> CreateBasket()
         {
-
+            Basket basket = new Basket();
             _db.Baskets.Add(basket);
             await _db.SaveChangesAsync();
-            return Results.Created($"/Id: {basket.Id}", basket);
+            return Ok(basket);
         }
 
         //Add Item to specified basket {id}
