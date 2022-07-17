@@ -1,0 +1,12 @@
+//to build a dotnet project before deployment
+dotnet build -c release
+//if publish folder isn't created then use this command after
+dotnet publish -c release
+
+[DOCKER]
+//do these commands in root folder
+docker-compose up build --no-cache 
+//the no cache is important or else it will use an old image 
+//after building use this command to run
+docker-compose up -d --force-recreate
+//force recreate so if instances are running they will also rebuild

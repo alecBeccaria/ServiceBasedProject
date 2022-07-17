@@ -52,3 +52,7 @@ services:
     container_name: sql-checkout
     ports:
       - "1477:1433"
+networks:
+  default:
+    name: netSEN300
+    external: true
