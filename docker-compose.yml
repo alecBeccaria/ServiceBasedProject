@@ -1,5 +1,6 @@
 version: "3.8"
 services:
+
   catalog:
     build: ./CatalogService
     container_name: CatalogService
@@ -32,6 +33,7 @@ services:
     container_name: sql-cards
     ports:
       - "1455:1433"
+  
   basket:
     build: ./BasketService
     container_name: BasketService
@@ -42,6 +44,7 @@ services:
     container_name: sql-basket
     ports:
       - "1466:1433"
+  
   checkout:
     build: ./CheckoutService
     container_name: CheckoutService
@@ -52,6 +55,8 @@ services:
     container_name: sql-checkout
     ports:
       - "1477:1433"
+
+
 networks:
   default:
     name: netSEN300
