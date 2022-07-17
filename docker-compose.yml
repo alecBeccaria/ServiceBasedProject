@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  catalog:
+    build: ./CatalogService
+    ports:
+      - "9000:80"
+    container_name: CatalogService
+  catalogdb:
+    build: ./catalogdb
+    container_name: catalogserver
+    ports:
+      - "1433:1433"
+  user:
+    build: ./UserService
+    ports:
+      - "9001:80"
+    container_name: UserService
+  userdb:
+    build: ./usersdb
+    container_name: sql-users
+    ports:
+      - "1444:1433"
