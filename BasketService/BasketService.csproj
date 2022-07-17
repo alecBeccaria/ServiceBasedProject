@@ -1,19 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-<<<<<<< Updated upstream
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
-=======
   	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
   	</PropertyGroup>
->>>>>>> Stashed changes
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.7" />

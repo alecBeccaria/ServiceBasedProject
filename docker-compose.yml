@@ -2,21 +2,53 @@ version: "3.8"
 services:
   catalog:
     build: ./CatalogService
+    container_name: CatalogService
     ports:
       - "9000:80"
-    container_name: CatalogService
   catalogdb:
-    build: ./catalogdb
-    container_name: catalogserver
+    build: ./CatalogService/catalogdb
+    container_name: sql-catalog
     ports:
       - "1433:1433"
+
   user:
     build: ./UserService
+    container_name: UserService
     ports:
       - "9001:80"
-    container_name: UserService
   userdb:
-    build: ./usersdb
+    build: ./UserService/usersdb
     container_name: sql-users
     ports:
       - "1444:1433"
+
+  card:
+    build: ./CardService
+    container_name: CardService
+    ports:
+      - "9002:80"
+  carddb:
+    build: ./CardService/carddb
+    container_name: sql-cards
+    ports:
+      - "1455:1433"
+  basket:
+    build: ./BasketService
+    container_name: BasketService
+    ports:
+      - "9003:80"
+  basketdb:
+    build: ./BasketService/basketdb
+    container_name: sql-basket
+    ports:
+      - "1466:1433"
+  checkout:
+    build: ./CheckoutService
+    container_name: CheckoutService
+    ports:
+      - "9004:80"
+  checkoutdb:
+    build: ./CheckoutService/checkoutdb
+    container_name: sql-checkout
+    ports:
+      - "1477:1433"
