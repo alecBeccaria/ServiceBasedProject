@@ -28,7 +28,7 @@ namespace BasketService.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Price = table.Column<float>(type: "real", nullable: true),
                     Quantity = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
