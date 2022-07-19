@@ -56,16 +56,16 @@ namespace BasketService
             if (basket.Items != null)
             {
                 List<Item> itemsDb = await _db.Items.ToListAsync();
-                int newItemId = itemsDb.Count() + 1;
-                List<Item> filteredList = basket.Items.Except(itemsDb).ToList();
 
-                foreach (Item item in filteredList)
+                foreach (Item item in basket.Items)
                 {
+                    if (itemsDb.Contains(item))
+                    {
+                        await _db.Database.ExecuteSqlRawAsync($"INSERT INTO Items(Id, Title, Description, Price, Quantity) VALUES({item.Id}, '{item.Title}','{item.Description}',{item.Price},{item.Quantity});");
+                    }
 
-                    await _db.Database.ExecuteSqlRawAsync($"INSERT INTO Items(Id, Title, Description, Price, Quantity) VALUES({newItemId}, '{item.Title}','{item.Description}',{item.Price},{item.Quantity});");
-
-                    await _db.Database.ExecuteSqlRawAsync($"INSERT INTO BasketItem VALUES({currentBasketId},{newItemId});");
-                    newItemId++;
+                    await _db.Database.ExecuteSqlRawAsync($"INSERT INTO BasketItem VALUES({currentBasketId},{item.Id});");
+                    
                 }
             }
             await _db.SaveChangesAsync();
