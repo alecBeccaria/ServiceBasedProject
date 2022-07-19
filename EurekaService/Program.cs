@@ -4,10 +4,8 @@ using Steeltoe.Discovery.Client;
 using Steeltoe.Discovery;
 
 var builder = WebApplication.CreateBuilder(args);
+//For Eureka
 builder.Services.AddDiscoveryClient(builder.Configuration);
-
-
-
 
 var app = builder.Build();
 
@@ -19,7 +17,7 @@ app.MapGet("/test1", async (IDiscoveryClient idc) =>
     //return "this is the root of dotnet-eureka-client";
     DiscoveryHttpClientHandler _handler = new DiscoveryHttpClientHandler(idc);
     var client = new HttpClient(_handler, false);
-    return await client.GetStringAsync("http://DOTNET-API1/test") + " more from dotnet-api2";
+    return await client.GetStringAsync("http://BasketService/test") + " more from BasketService";
 }
 );
 

@@ -19,7 +19,8 @@
     "docker_db1": "Server=localhost;database=apidb;User ID= SA;password=abc123!!@;"
   },
  
---
+--docker compose
+	docker-compose -p mycompose up --build --force-recreate
   
 --Example Dockerfile--
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
