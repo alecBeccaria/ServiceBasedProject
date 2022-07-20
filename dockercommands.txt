@@ -5,7 +5,7 @@ dotnet publish -c release
 
 [DOCKER]
 //do these commands in root folder
-docker-compose up build --no-cache 
+docker-compose build --no-cache 
 //the no cache is important or else it will use an old image 
 //after building use this command to run
 docker-compose up -d --force-recreate

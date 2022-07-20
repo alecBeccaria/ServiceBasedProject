@@ -5,6 +5,7 @@ services:
     container_name: eureka
     ports:
       - "8761:8761"
+
   catalog:
     build: ./CatalogService
     container_name: CatalogService
