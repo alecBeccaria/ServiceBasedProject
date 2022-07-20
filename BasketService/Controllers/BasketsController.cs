@@ -23,6 +23,8 @@ namespace BasketService
             return Ok(list);
         }
 
+
+
         //Get One Basket
         [HttpGet("{id}")]
         public async Task<ActionResult<List<Basket>>> SingleBasket(int id)
@@ -36,14 +38,40 @@ namespace BasketService
         }
 
         //Create Basket for User
-        [HttpGet("add")]
-        public async Task<ActionResult<Basket>> CreateBasket()
+        [HttpPost("add")]
+        public async Task<ActionResult<Basket>> AddBasket(Basket basket)
         {
-            Basket basket = new Basket();
-            _db.Baskets.Add(basket);
+            //Adds basket
+            //check if basket exists
+            
+            
+            await _db.Database.ExecuteSqlRawAsync(
+            $"INSERT INTO Baskets (userId) VALUES({basket.userId});");
+
+            List<Basket> dbBasketList = await _db.Baskets.ToListAsync();
+            int currentBasketId = dbBasketList.Count();
+
+
+
+            if (basket.Items != null)
+            {
+                List<Item> itemsDb = await _db.Items.ToListAsync();
+
+                foreach (Item item in basket.Items)
+                {
+                    if (itemsDb.Contains(item))
+                    {
+                        await _db.Database.ExecuteSqlRawAsync($"INSERT INTO Items(Id, Title, Description, Price, Quantity) VALUES({item.Id}, '{item.Title}','{item.Description}',{item.Price},{item.Quantity});");
+                    }
+
+                    await _db.Database.ExecuteSqlRawAsync($"INSERT INTO BasketItem VALUES({currentBasketId},{item.Id});");
+                    
+                }
+            }
             await _db.SaveChangesAsync();
             return Ok(basket);
         }
+
 
         //Add Item to specified basket {id}
         [HttpPut("{id}/item/add")]
