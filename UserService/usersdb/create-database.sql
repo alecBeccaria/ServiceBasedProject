@@ -12,3 +12,5 @@ CREATE TABLE Users (
 	CardID int
 );
 GO
+
+

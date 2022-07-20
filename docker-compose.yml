@@ -1,6 +1,10 @@
 version: "3.8"
 services:
-
+  eureka:
+    image: steeltoeoss/eureka-server
+    container_name: eureka
+    ports:
+      - "8761:8761"
   catalog:
     build: ./CatalogService
     container_name: CatalogService
