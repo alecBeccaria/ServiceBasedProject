@@ -11,7 +11,7 @@ public class BasketDb : DbContext
 
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
-     {
+    {
         modelBuilder.Entity<Item>().Property(item => item.Id).ValueGeneratedNever();
 
         /*modelBuilder.Entity<BasketItem>()

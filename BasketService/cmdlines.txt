@@ -4,13 +4,13 @@ docker network create netSEN300
 
 // Deploy SQL server container
 //	   name server         accept eula          environment variable pw    join network    set ports     name of the image
-docker run --name sqlserver-b -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=abc123!!23" --net netSEN300 -p 1500:1433 -d mcr.microsoft.com/mssql/server:2019-latest
+docker run --name basketdb -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=abc123!!23" --net netSEN300 -p 1502:1433 -d mcr.microsoft.com/mssql/server:2019-latest
 
 // Create Database on SqlServer
-CREATE DATABASE catalogdb
+CREATE DATABASE basketdb
 
 // Create Table
-USE catalogdb
+USE basketdb
 CREATE TABLE "Items" (
 	"Id" bigint NOT NULL PRIMARY KEY IDENTITY(1,1),
 	"Title" VARCHAR(1000),

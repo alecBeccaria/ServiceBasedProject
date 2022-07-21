@@ -46,10 +46,6 @@ const checkOut = async () => {
 
 }
 
-
-
-
-
 const addToCart = async (item) => {
 
     var url = `http://localhost:5156/catalog/items/${item.id}`
@@ -81,7 +77,6 @@ const addToCart = async (item) => {
     }
     console.log(basket);
 }
-
 
 const fetchData = async (url) => {
     const response = await fetch(url);

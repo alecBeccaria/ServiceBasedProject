@@ -22,15 +22,9 @@ body {
     border-width: 2px; 
     padding-right: 300px; 
     padding-left: 10px;
-    
-}
-
-.basket{
-    
     margin-left: 60px;
     
 }
-
 
 .flexbox-search {
     display: flex;
