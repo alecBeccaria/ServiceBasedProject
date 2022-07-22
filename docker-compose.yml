@@ -60,6 +60,12 @@ services:
     container_name: sql-checkout
     ports:
       - "1477:1433"
+    
+  apigateway: 
+    build: ./ApiGateway
+    container_name: apigateway
+    ports: 
+      - "8889:8888"
 
 
 networks:
