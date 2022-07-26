@@ -10,3 +10,4 @@ docker-compose build --no-cache
 //after building use this command to run
 docker-compose up -d --force-recreate
 //force recreate so if instances are running they will also rebuild
+
