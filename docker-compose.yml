@@ -10,16 +10,25 @@ services:
     image: catalogservice
     build: ./CatalogService
     container_name: CatalogService
+
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 3
+        delay: 10s
+
     ports:
       - "9000:80"
     depends_on:
       - "catalogdb"
+  
   catalogdb:
     image: catalogdb
     build: ./CatalogService/catalogdb
     container_name: sql-catalog
     ports:
       - "1433:1433"
+
   userservice:
     image: userservice
     build: ./UserService
@@ -44,7 +53,11 @@ services:
   card:
     image: cardservice
     build: ./CardService
-    container_name: CardService
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 3
+        delay: 10s
     ports:
       - "9002:80"
     depends_on:
@@ -59,7 +72,11 @@ services:
   basket:
     image: basketservice
     build: ./BasketService
-    container_name: BasketService
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 3
+        delay: 10s
     ports:
       - "9003:80"
     depends_on:
@@ -74,7 +91,11 @@ services:
   checkout:
     image: checkoutservice
     build: ./CheckoutService
-    container_name: CheckoutService
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 3
+        delay: 10s
     ports:
       - "9004:80"
     depends_on:
