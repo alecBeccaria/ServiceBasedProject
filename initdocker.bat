@@ -1,8 +1,8 @@
-@echo DOTNET builds
+@echo "DOTNET builds"
 dotnet build -c Release
 dotnet publish -c Release
 
-@echo building docker images
+@echo "building docker images"
 docker-compose build --no-cache 
 @echo "Docker build complete"
 
@@ -15,3 +15,4 @@ docker swarm init
 docker stack deploy -c docker-compose.yml packagedAPIs
 
 @echo "finished deploying docker swarm"
+@echo Wait at least 60 seconds for eureka and apigateway to register services

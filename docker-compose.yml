@@ -34,7 +34,7 @@ services:
       - "userdb"
     links:
       - userdb
-  usersdb:
+  userdb:
     image: usersdb
     build: ./UserService/usersdb
     container_name: sql-users
