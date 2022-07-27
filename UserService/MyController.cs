@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Controllers{
 
     [ApiController]
-    [Route("userservice")]
+    [Route("user")]
     public class MyController : ControllerBase{
         private readonly UserDB _db;
 
@@ -14,9 +14,9 @@ namespace Controllers{
         }
 
         [HttpGet]
-        [Route("abc")]
-        public ActionResult<string> abc(){
-            return "Hello World!";
+        [Route("test")]
+        public ActionResult<String> abc() {
+            return "Hello from test";
         }
 
 
@@ -48,6 +48,7 @@ namespace Controllers{
             return Ok(user);
         }
 
+        
         [HttpPost]
         public async Task<IResult> PostUser(User user){
             _db.Users.Add(user);
