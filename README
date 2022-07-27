@@ -1,0 +1,17 @@
+This is how you start on powershell vs CMD
+if you are on vscode terminal you are most likely using powershell
+run these commands in the ROOT of the project
+
+[POWERSHELL]
+cmd.exe /c initdocker.bat
+
+[CMD]
+initdocker.bat
+
+STOPPING SWARM
+***this also deletes the nodes in the swarm***
+[POWERSHELL]
+cmd.exe /c DELETEswarm.bat
+
+[CMD]
+DELETEswarm.bat

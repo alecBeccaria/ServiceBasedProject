@@ -7,6 +7,7 @@ services:
       - "8761:8761"
 
   catalog:
+    image: catalogservice
     build: ./CatalogService
     container_name: CatalogService
     ports:
@@ -14,25 +15,34 @@ services:
     depends_on:
       - "catalogdb"
   catalogdb:
+    image: catalogdb
     build: ./CatalogService/catalogdb
     container_name: sql-catalog
     ports:
       - "1433:1433"
-
-  user:
+  userservice:
+    image: userservice
     build: ./UserService
-    container_name: UserService
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 3
+        delay: 10s
     ports:
-      - "9001:80"
+      - "9005:80"
     depends_on:
       - "userdb"
-  userdb:
+    links:
+      - userdb
+  usersdb:
+    image: usersdb
     build: ./UserService/usersdb
     container_name: sql-users
     ports:
       - "1444:1433"
 
   card:
+    image: cardservice
     build: ./CardService
     container_name: CardService
     ports:
@@ -40,12 +50,14 @@ services:
     depends_on:
       - "carddb"
   carddb:
+    image: carddb
     build: ./CardService/carddb
     container_name: sql-cards
     ports:
       - "1455:1433"
   
   basket:
+    image: basketservice
     build: ./BasketService
     container_name: BasketService
     ports:
@@ -53,12 +65,14 @@ services:
     depends_on:
       - "basketdb"
   basketdb:
+    image: basketdb
     build: ./BasketService/basketdb
     container_name: sql-basket
     ports:
       - "1466:1433"
   
   checkout:
+    image: checkoutservice
     build: ./CheckoutService
     container_name: CheckoutService
     ports:
@@ -66,24 +80,20 @@ services:
     depends_on:
       - "checkoutdb"
   checkoutdb:
+    image: checkoutdb
     build: ./CheckoutService/checkoutdb
     container_name: sql-checkout
     ports:
       - "1477:1433"
 
   apigateway:
+    image: apigateway:1    
     container_name: apigateway
     build:
       context: ./ApiGateway
       dockerfile: 2.dockerfile
-    image: apigateway:1    
     ports:
       - "8888:8888"
     depends_on:
       - eureka
 
-
-networks:
-  default:
-    name: netSEN300
-    external: true
