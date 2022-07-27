@@ -20,6 +20,13 @@ namespace Controllers
         public ActionResult<String> abc() {
             return "Hello from test";
         }
+        [HttpGet]
+        [Route("container")]
+        public ActionResult<String> ContainerResponse() {
+            string myHost = System.Net.Dns.GetHostName();
+            string myIP = System.Net.Dns.GetHostEntry(myHost).AddressList[0].ToString();
+            return "Hello from container: " + myHost + " " + myIP;
+        }
 
         [HttpGet]
         [Route("items")]

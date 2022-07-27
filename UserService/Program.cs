@@ -27,6 +27,7 @@ DiscoveryHttpClientHandler _handler = new DiscoveryHttpClientHandler(idc);
 var client = new HttpClient(_handler, false);
 return await client.GetStringAsync("http://CATALOGSERVICE/catalog/test/") + " || Accessed from Users service"; } );
 
+
 app.UseCors("AllCors");
 
 app.Run();

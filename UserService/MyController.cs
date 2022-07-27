@@ -1,5 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
 
 namespace Controllers{
 
@@ -17,6 +21,13 @@ namespace Controllers{
         [Route("test")]
         public ActionResult<String> abc() {
             return "Hello from test";
+        }
+        [HttpGet]
+        [Route("container")]
+        public ActionResult<String> ContainerResponse() {
+            string myHost = System.Net.Dns.GetHostName();
+            string myIP = System.Net.Dns.GetHostEntry(myHost).AddressList[0].ToString();
+            return "Hello from container: " + myHost + " " + myIP;
         }
 
 
