@@ -1,10 +1,17 @@
 version: "3.8"
+
+networks:
+  netSEN300:
+    external: true
+
 services:
   eureka:
     image: steeltoeoss/eureka-server
     container_name: eureka
     ports:
       - "8761:8761"
+    networks:
+      - netSEN300
 
   catalog:
     build: ./CatalogService
@@ -13,11 +20,15 @@ services:
       - "9000:80"
     depends_on:
       - "catalogdb"
+    networks:
+      - netSEN300
   catalogdb:
     build: ./CatalogService/catalogdb
     container_name: sql-catalog
     ports:
       - "1433:1433"
+    networks:
+      - netSEN300
 
   user:
     build: ./UserService
@@ -26,17 +37,23 @@ services:
       - "9001:80"
     depends_on:
       - "userdb"
+    networks:
+      - netSEN300
   userdb:
     build: ./UserService/usersdb
     container_name: sql-users
     ports:
       - "1444:1433"
+    networks:
+      - netSEN300
 
   card:
     build: ./CardService
     container_name: CardService
     ports:
       - "9002:80"
+    networks:
+      - netSEN300
     depends_on:
       - "carddb"
   carddb:
@@ -44,25 +61,33 @@ services:
     container_name: sql-cards
     ports:
       - "1455:1433"
-  
+    networks:
+      - netSEN300
+
   basket:
     build: ./BasketService
     container_name: BasketService
     ports:
       - "9003:80"
+    networks:
+      - netSEN300
     depends_on:
-      - "basketdb"
-  basketdb:
+      - "sql-basket"
+  sql-basket:
     build: ./BasketService/basketdb
     container_name: sql-basket
     ports:
       - "1466:1433"
+    networks:
+      - netSEN300
   
   checkout:
     build: ./CheckoutService
     container_name: CheckoutService
     ports:
       - "9004:80"
+    networks:
+      - netSEN300
     depends_on:
       - "checkoutdb"
   checkoutdb:
@@ -70,6 +95,8 @@ services:
     container_name: sql-checkout
     ports:
       - "1477:1433"
+    networks:
+      - netSEN300
 
   apigateway:
     container_name: apigateway
@@ -79,11 +106,9 @@ services:
     image: apigateway:1    
     ports:
       - "8888:8888"
+    networks:
+      - netSEN300
     depends_on:
       - eureka
 
 
-networks:
-  default:
-    name: netSEN300
-    external: true

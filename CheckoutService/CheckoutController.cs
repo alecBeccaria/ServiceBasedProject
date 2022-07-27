@@ -4,13 +4,19 @@ using Microsoft.EntityFrameworkCore;
 namespace Controllers{
 
     [ApiController]
-    [Route("checkoutservice")]
+    [Route("checkout")]
     public class CheckoutController : ControllerBase{
         private readonly CheckoutDB _db;
 
         public CheckoutController(ILogger<CheckoutController> logger, CheckoutDB db)
         {            
             _db = db;
+        }
+
+        [HttpGet]
+        [Route("test")]
+        public ActionResult<String> abc() {
+            return "Hello from test";
         }
         //Post / (accepts order return orderID) //Finished Order
         [HttpPost]

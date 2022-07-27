@@ -9,6 +9,12 @@ namespace BasketService
     public class BasketsController : Controller
     {
 
+        [HttpGet]
+        [Route("test")]
+        public ActionResult<String> abc() {
+            return "Hello from test";
+        }
+
         private readonly BasketDb _db;
         public BasketsController(ILogger<BasketsController> logger, BasketDb db)
         {

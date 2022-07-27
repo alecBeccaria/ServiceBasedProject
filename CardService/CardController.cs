@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Controllers{
 
     [ApiController]
-    [Route("cardservice")]
+    [Route("card")]
     public class CardController : ControllerBase{
         private readonly CardDB _db;
 
@@ -12,7 +12,14 @@ namespace Controllers{
         {            
             _db = db;
         }
-        [HttpPost]
+
+        [HttpGet]
+        [Route("test")]
+        public ActionResult<String> abc() {
+            return "Hello from test";
+        }
+        
+        [HttpPost("add")]
         public IActionResult Post([FromBody]Card card)
         {
             if (card == null || !(VerifyCard(card)) ){ 
